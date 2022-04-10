@@ -12,6 +12,7 @@ import friday.structural.decorator.Reader;
 import friday.structural.decorator.WordReader;
 import friday.structural.decorator.WordReaderDecorator;
 import friday.structural.decorator.model.UpperCaseWordDecorator;
+import friday.structural.facade.SandwichFacade;
 
 public class Main {
     public static void main(String[] args) {
@@ -52,6 +53,11 @@ public class Main {
 
         // Facade
         System.out.println("--------------Facade--------------");
+        SandwichFacade sandwichFacade = new SandwichFacade();
+        System.out.println(sandwichFacade.getSandwich("Chicken", "Light"));
+
+        // Flyweight
+        System.out.println("--------------Flyweight--------------");
 
 
     }
