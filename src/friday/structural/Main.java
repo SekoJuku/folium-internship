@@ -14,11 +14,17 @@ import friday.structural.decorator.WordReaderDecorator;
 import friday.structural.decorator.model.UpperCaseWordDecorator;
 import friday.structural.facade.SandwichFacade;
 import friday.structural.flyweight.JuiceConsumer;
+import friday.structural.proxy.StringDBProxy;
+import friday.structural.proxy.StringService;
 
 public class Main {
+    public static void divider(String name) {
+        System.out.println("--------------" + name + "--------------");
+    }
+
     public static void main(String[] args) {
         // Adapter
-        System.out.println("--------------Adapter--------------");
+        divider("Adapter");
         LinuxProgram linuxProgram = new LinuxProgram("Hello");
         WindowsProgram windowsProgram = new WindowsProgram("Hello");
         System.out.println(linuxProgram.execute() == windowsProgram.execute());
@@ -27,7 +33,7 @@ public class Main {
         System.out.println(linuxProgram.execute() == windowsProgramAdapter.execute());
 
         // Bridge
-        System.out.println("--------------Bridge--------------");
+        divider("Adapter");
         Door door = new Door();
         door.setHandle(new LeftHandle());
         door.open();
@@ -35,7 +41,7 @@ public class Main {
         door.open();
 
         // Composite
-        System.out.println("--------------Composite--------------");
+        divider("Composite");
         Team team = new Team();
         team.addEmployee(new Employee("Serikzhan", "Backend"));
         team.addEmployee(new Employee("Amirzhan", "Frontend"));
@@ -46,23 +52,26 @@ public class Main {
         team.work();
 
         // Decorator
-        System.out.println("--------------Decorator--------------");
+        divider("Decorator");
         WordReaderDecorator decorator = new UpperCaseWordDecorator(
                 new WordReader("Serikzhan")
         );
         System.out.println(decorator.read());
 
         // Facade
-        System.out.println("--------------Facade--------------");
+        divider("Facade");
         SandwichFacade sandwichFacade = new SandwichFacade();
         System.out.println(sandwichFacade.getSandwich("Chicken", "Light"));
 
         // Flyweight
-        System.out.println("--------------Flyweight--------------");
+        divider("Flyweight");
         JuiceConsumer juiceConsumer = new JuiceConsumer();
         juiceConsumer.addJuice(1.2, "Apple", "Piko");
         juiceConsumer.addJuice(1.2, "MultiFruit", "Piko");
         juiceConsumer.consumeAll();
-        //
+        // Proxy
+        divider("Proxy");
+        StringService service = new StringService(new StringDBProxy());
+        System.out.println(service.getAllWords());
     }
 }
