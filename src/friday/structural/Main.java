@@ -13,6 +13,7 @@ import friday.structural.decorator.WordReader;
 import friday.structural.decorator.WordReaderDecorator;
 import friday.structural.decorator.model.UpperCaseWordDecorator;
 import friday.structural.facade.SandwichFacade;
+import friday.structural.flyweight.JuiceConsumer;
 
 public class Main {
     public static void main(String[] args) {
@@ -58,7 +59,10 @@ public class Main {
 
         // Flyweight
         System.out.println("--------------Flyweight--------------");
-
-
+        JuiceConsumer juiceConsumer = new JuiceConsumer();
+        juiceConsumer.addJuice(1.2, "Apple", "Piko");
+        juiceConsumer.addJuice(1.2, "MultiFruit", "Piko");
+        juiceConsumer.consumeAll();
+        //
     }
 }
