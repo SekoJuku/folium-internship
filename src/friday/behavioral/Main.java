@@ -6,6 +6,7 @@ import friday.behavioral.chainOfResponsibility.PasswordFilter;
 import friday.behavioral.chainOfResponsibility.Request;
 import friday.behavioral.observer.NewsListener;
 import friday.behavioral.observer.NewsPublisher;
+import friday.behavioral.state.Bottle;
 
 public class Main extends friday.structural.Main {
     public static void main(String[] args) {
@@ -26,6 +27,14 @@ public class Main extends friday.structural.Main {
         publisher.subscribe(new NewsListener("Berik"));
         publisher.notifySubscribers("Beware of wolves!");
         // State
+        divider("State");
+        Bottle bottle = new Bottle();
+        System.out.println(bottle.getState().status());
+        System.out.println(bottle.getState().drink());
+        System.out.println(bottle.getState().fill());
+        System.out.println(bottle.getState().status());
+        System.out.println(bottle.getState().drink());
+        System.out.println(bottle.getState().status());
 
     }
 }
