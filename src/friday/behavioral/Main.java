@@ -7,6 +7,9 @@ import friday.behavioral.chainOfResponsibility.Request;
 import friday.behavioral.observer.NewsListener;
 import friday.behavioral.observer.NewsPublisher;
 import friday.behavioral.state.Bottle;
+import friday.behavioral.strategy.BiologicalStrategy;
+import friday.behavioral.strategy.CapitalismStrategy;
+import friday.behavioral.strategy.Pack;
 
 public class Main extends friday.structural.Main {
     public static void main(String[] args) {
@@ -35,6 +38,15 @@ public class Main extends friday.structural.Main {
         System.out.println(bottle.getState().status());
         System.out.println(bottle.getState().drink());
         System.out.println(bottle.getState().status());
-
+        // Strategy
+        divider("Strategy");
+        Pack pack1 = new Pack();
+        pack1.setStrategy(new BiologicalStrategy());// only difference is names (ideologically different)
+        pack1.execute("Barry");
+        pack1.execute("Berik");
+        System.out.println(pack1.getAll());
+        pack1.setStrategy(new CapitalismStrategy());// only difference is names (ideologically different)
+        pack1.execute("Ulan");
+        System.out.println(pack1.getAll());
     }
 }
