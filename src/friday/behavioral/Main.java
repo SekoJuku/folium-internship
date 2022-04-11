@@ -4,6 +4,8 @@ import friday.behavioral.chainOfResponsibility.EmailFilter;
 import friday.behavioral.chainOfResponsibility.Filter;
 import friday.behavioral.chainOfResponsibility.PasswordFilter;
 import friday.behavioral.chainOfResponsibility.Request;
+import friday.behavioral.observer.NewsListener;
+import friday.behavioral.observer.NewsPublisher;
 
 public class Main extends friday.structural.Main {
     public static void main(String[] args) {
@@ -17,8 +19,13 @@ public class Main extends friday.structural.Main {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        // Command
-        divider("Command");
+        // Observer
+        divider("Observer");
+        NewsPublisher publisher = new NewsPublisher();
+        publisher.subscribe(new NewsListener("Serik"));
+        publisher.subscribe(new NewsListener("Berik"));
+        publisher.notifySubscribers("Beware of wolves!");
+        // State
 
     }
 }
