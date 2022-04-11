@@ -10,6 +10,9 @@ import friday.behavioral.state.Bottle;
 import friday.behavioral.strategy.BiologicalStrategy;
 import friday.behavioral.strategy.CapitalismStrategy;
 import friday.behavioral.strategy.Pack;
+import friday.behavioral.templateMethod.BallTemplate;
+import friday.behavioral.templateMethod.BasketballBall;
+import friday.behavioral.templateMethod.FootballBall;
 
 public class Main extends friday.structural.Main {
     public static void main(String[] args) {
@@ -48,5 +51,14 @@ public class Main extends friday.structural.Main {
         pack1.setStrategy(new CapitalismStrategy());// only difference is names (ideologically different)
         pack1.execute("Ulan");
         System.out.println(pack1.getAll());
+        // Template Method
+        divider("Template Method");
+        BallTemplate ball = new BasketballBall();
+        System.out.println(ball.getBouncinessValue());
+        ball = new FootballBall(3);
+        System.out.println(ball.getBouncinessValue());
+        ball = new FootballBall(5);
+        System.out.println(ball.getBouncinessValue());
+
     }
 }
