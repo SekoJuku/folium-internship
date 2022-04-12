@@ -4,6 +4,11 @@ import friday.behavioral.chainOfResponsibility.EmailFilter;
 import friday.behavioral.chainOfResponsibility.Filter;
 import friday.behavioral.chainOfResponsibility.PasswordFilter;
 import friday.behavioral.chainOfResponsibility.Request;
+import friday.behavioral.iterator.ByteArray;
+import friday.behavioral.iterator.ByteIterator;
+import friday.behavioral.mediator.Controller;
+import friday.behavioral.memento.Editor;
+import friday.behavioral.memento.History;
 import friday.behavioral.observer.NewsListener;
 import friday.behavioral.observer.NewsPublisher;
 import friday.behavioral.state.Bottle;
@@ -59,6 +64,32 @@ public class Main extends friday.structural.Main {
         System.out.println(ball.getBouncinessValue());
         ball = new FootballBall(5);
         System.out.println(ball.getBouncinessValue());
+        // Iterator
+        divider("Iterator");
+        ByteArray byteArray = new ByteArray();
+        byteArray.add((byte) 1);
+        byteArray.add((byte) 2);
+        byteArray.add((byte) 3);
 
+        for (Byte i : new ByteIterator(byteArray)) {
+            System.out.println(i);
+        }
+        // Memento
+        divider("Memento");
+        Editor editor = new Editor("Serik");
+        History history = new History(editor.makeSnapshot());
+        System.out.println(editor.getText());
+        editor.add("zhan");
+        System.out.println(editor.getText());
+        editor = history.getBackup();
+        System.out.println(editor.getText());
+        // Mediator
+        divider("Mediator");
+        Controller controller = new Controller();
+        System.out.println(1 + ": " +controller.get(1));
+        controller.put(4, "Magzhan");
+        System.out.println(controller.substituteWithId(1,4));
+        System.out.println(1 + ": " + controller.get(1));
+        System.out.println(4 + ": " + controller.get(4));
     }
 }
