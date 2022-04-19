@@ -18,7 +18,7 @@ public class Main {
         );
         System.out.println(element);
         System.out.println("Iteration");
-        Iterator<Element> it = new ElementIterator(element);
+        Iterator<Element> it = element.iterator();
         while (it.hasNext()) {
             Element i = it.next();
             if(i.getValue() != null)
