@@ -1,10 +1,15 @@
 package tuesday;
 
+import tuesday.packageprivate.B;
 import tuesday.packageprivate.C;
+import tuesday.packageprivate.D;
+import tuesday.packageprivate.E;
 import tuesday.serizalize.House;
 import tuesday.serizalize.Owner;
 
 import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void divider(String name)
@@ -25,15 +30,18 @@ public class Main {
                 new House("Domik", "Gete 14"));
 
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(
-                new FileOutputStream("person.out"));
+                new FileOutputStream("owner.out"));
         objectOutputStream.writeObject(owner);
         objectOutputStream.close();
 
         ObjectInputStream objectInputStream = new ObjectInputStream(
-                new FileInputStream("person.out"));
+                new FileInputStream("owner.out"));
         Owner ownerRestored = (Owner) objectInputStream.readObject();
         objectInputStream.close();
 
         System.out.println(ownerRestored);
+        List<D> list = new LinkedList<>();
+        list.add(new B());
+        list.add(new E());
     }
 }
