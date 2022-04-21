@@ -1,8 +1,7 @@
 package task;
 
-import java.util.ArrayList;
+import java.time.*;
 import java.util.Iterator;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +22,10 @@ public class Main {
             Element i = it.next();
             if(i.getValue() != null)
                 System.out.println(i.getValue());
+        }
+        DateIterator dateIterator = new DateIterator(2001,10,23,0,0);
+        for (int i = 0; i < 5; i++) {
+            System.out.println(dateIterator.next());
         }
     }
 }
