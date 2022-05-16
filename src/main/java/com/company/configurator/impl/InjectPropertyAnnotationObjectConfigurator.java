@@ -2,6 +2,7 @@ package com.company.configurator.impl;
 
 import com.company.annotation.InjectProperty;
 import com.company.configurator.ObjectConfigurator;
+import com.company.context.ApplicationContext;
 import lombok.SneakyThrows;
 
 import java.io.BufferedReader;
@@ -27,7 +28,7 @@ public class InjectPropertyAnnotationObjectConfigurator implements ObjectConfigu
 
     @Override
     @SneakyThrows
-    public void configure(Object t) {
+    public void configure(Object t, ApplicationContext context) {
         Class<?> implClass = t.getClass();
         for(Field field : implClass.getDeclaredFields()) {
             InjectProperty annotation = field.getAnnotation(InjectProperty.class);
