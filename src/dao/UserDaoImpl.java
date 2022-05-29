@@ -24,7 +24,9 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, String.valueOf(user.getId()));
         preparedStatement.setString(2, user.getName());
-        return preparedStatement.execute();
+        boolean execute = preparedStatement.execute();
+        preparedStatement.close();
+        return execute;
     }
 
     @Override
@@ -33,6 +35,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, String.valueOf(id));
         preparedStatement.execute();
+        preparedStatement.close();
     }
 
     @Override
@@ -41,6 +44,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, String.valueOf(id));
         ResultSet resultSet = preparedStatement.executeQuery();
+        preparedStatement.close();
         return parseResultSetToUser(resultSet);
     }
 
@@ -53,6 +57,7 @@ public class UserDaoImpl implements UserDao {
         while (resultSet.next()) {
             users.add(parseResultSetToUser(resultSet));
         }
+        preparedStatement.close();
         return users;
     }
 
@@ -63,6 +68,7 @@ public class UserDaoImpl implements UserDao {
         preparedStatement.setString(1, user.getName());
         preparedStatement.setString(2, String.valueOf(user.getId()));
         preparedStatement.execute();
+        preparedStatement.close();
     }
 
     public User parseResultSetToUser(ResultSet resultSet) throws SQLException {
