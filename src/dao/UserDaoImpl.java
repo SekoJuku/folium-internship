@@ -19,12 +19,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean add(User user) throws SQLException {
+    public void add(User user) throws SQLException {
         String sql = "INSERT INTO users(id, name) VALUES (?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, String.valueOf(user.getId()));
+            preparedStatement.setLong(1, user.getId());
             preparedStatement.setString(2, user.getName());
-            return preparedStatement.execute();
+            preparedStatement.execute();
         }
     }
 
@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
     public void delete(Long id) throws SQLException {
         String sql = "delete from users where id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, String.valueOf(id));
+            preparedStatement.setLong(1, id);
             preparedStatement.execute();
         }
     }
@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao {
     public User getUser(Long id) throws SQLException {
         String sql = "SELECT * FROM users where id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, String.valueOf(id));
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             return parseResultSetToUser(resultSet);
         }

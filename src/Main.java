@@ -8,12 +8,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        User user = new User(2L, "Ulan");
+        User user = new User(5L, "Ulan");
         UserDaoImpl userDao = new UserDaoImpl();
-        userDao.add(user);
 
         userDao.getUsers().forEach(System.out::println);
 
+        userDao.add(user);
         System.out.println(userDao.getUser(2L));
 
         userDao.delete(2L);

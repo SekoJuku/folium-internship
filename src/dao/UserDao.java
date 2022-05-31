@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDao {
-    public boolean add(User user)
+    public void add(User user)
         throws SQLException;
     public void delete(Long id)
         throws SQLException;
